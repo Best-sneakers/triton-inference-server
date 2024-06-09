@@ -1,0 +1,27 @@
+services:
+  triton_hf:
+    build:
+      context: .
+      dockerfile: Dockerfiles/triton/Dockerfile
+      args:
+        - FROM_IMAGE_NAME=python:3.10.14-slim
+      target: development
+    shm_size: '32gb'
+    restart: unless-stopped
+    command: [ "python3", "-m", "triton_server" ]
+    env_file:
+      - ./.env
+    ports:
+      - 8500:8000
+      - 8501:8001
+      - 8502:8002
+    environment:
+      - SETTINGS_LOG_FILE=True
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    volumes:
+      - ./triton_server:/src/triton_server
+    deploy:
+      resources:
+        limits:
+          cpus: '12'
