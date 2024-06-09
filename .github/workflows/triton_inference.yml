@@ -47,11 +47,11 @@ jobs:
 
       - name: Lint with flake8
         run: |
-          flake8 hse_mlops_hw || flake8 triton_inference --format=html --htmldir=reports/triton_inference/flake8/
+          flake8 triton_inference || flake8 triton_inference --format=html --htmldir=reports/triton_inference/flake8/
 
       - name: Lint with pylint
         run: |
-          pylint hse_mlops_hw || pylint triton_inference--output-format=pylint_report.CustomJsonReporter --load-plugins = "pylint_report"  | pylint_report > reports/triton_inference/pylint/report.html | false
+          pylint triton_inference || pylint triton_inference--output-format=pylint_report.CustomJsonReporter --load-plugins = "pylint_report"  | pylint_report > reports/triton_inference/pylint/report.html | false
 
 
       - name: Upload reports
