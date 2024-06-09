@@ -37,21 +37,21 @@ jobs:
 
       - name: Create directories
         run: |
-          mkdir -p reports/triton_inference/flake8/
-          mkdir -p reports/triton_inference/pylint/
-          mkdir -p reports/triton_inference/mypy/
+          mkdir -p reports/triton_server/flake8/
+          mkdir -p reports/triton_server/pylint/
+          mkdir -p reports/triton_server/mypy/
 
       - name: Check typing with mypy
         run: |
-          mypy --html-report reports/triton_inference/mypy/ ./triton_inference || true
+          mypy --html-report reports/triton_server/mypy/ ./triton_server || true
 
       - name: Lint with flake8
         run: |
-          flake8 triton_inference || flake8 triton_inference --format=html --htmldir=reports/triton_inference/flake8/
+          flake8 triton_server || flake8 triton_server --format=html --htmldir=reports/triton_server/flake8/
 
       - name: Lint with pylint
         run: |
-          pylint triton_inference || pylint triton_inference--output-format=pylint_report.CustomJsonReporter --load-plugins = "pylint_report"  | pylint_report > reports/triton_inference/pylint/report.html | false
+          pylint triton_server || pylint triton_server --output-format=pylint_report.CustomJsonReporter --load-plugins = "pylint_report"  | pylint_report > reports/triton_server/pylint/report.html | false
 
 
       - name: Upload reports
