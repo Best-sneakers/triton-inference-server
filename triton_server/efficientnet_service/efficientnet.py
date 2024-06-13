@@ -38,7 +38,6 @@ class EfficientNetModel(BaseModel):
 
     @batch
     def infer(self, input_data: np.ndarray):
-        logger.debug(f"Inputs: {input_data[1]}")
 
         images = []
 
